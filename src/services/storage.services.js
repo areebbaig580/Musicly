@@ -1,0 +1,17 @@
+const ImageKit = require("@imagekit/nodejs")
+
+const imagekit = new ImageKit({
+    privateKey: process.env.IMAGEKIT_PRIVATE_KEY
+})
+
+async function uploadFile(file){
+    const result = await imagekit.files.upload({
+        file,
+        fileName : "music_" + Date.now(),
+        folder: "project-1/musics"
+    })
+
+    return result
+}
+
+module.exports = uploadFile
