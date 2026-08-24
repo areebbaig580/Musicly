@@ -58,7 +58,7 @@ async function loginUser(req, res){
         message: "invalid credintials"
     })
   }
-  console.log(password, user.password)
+  
   const isPasswordValid = await bcrypt.compare(password ,user.password )
 
   if(!isPasswordValid){

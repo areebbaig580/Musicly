@@ -8,8 +8,9 @@ const upload = multer({
 })
 const route = express.Router();
 
-route.post("/create",authMiddleWare, upload.single("music"), musicControllers.createMusic)
-route.post("/create-album",authMiddleWare, musicControllers.createAlbum)
+route.post("/create",authMiddleWare.authArtist, upload.single("music"), musicControllers.createMusic)
+route.post("/create-album",authMiddleWare.authArtist, musicControllers.createAlbum)
+route.get("/",authMiddleWare.authUser, musicControllers.getAllMusics)
 
 
 module.exports = route
