@@ -3,51 +3,39 @@ const jwt = require("jsonwebtoken")
 const uploadFile = require("../services/storage.services")
 const albumModel = require("../models/album.model")
 
-async function createMusic(req, res){
+async function createMusic(req, res) {
+    const { title } = req.body
+    const file = req.file
 
-    const token =  req.cookies.token;
+    const result = await uploadFile(file.buffer.toString("base64"))
 
-    if(!token){
-        return res.status(401).json({message:"Invalid user"})
-    }
+    const music = await musicModel.create({
+        uri: result.url,
+        title,
+        artist: req.user.id
+    })
 
-    try{
-        const decoded = jwt.verify(token, process.env.JWT_SECRET)
-
-        if(decoded.role!=="artist"){
-            return res.status(401).json({message: "Unauthosised user"});
-        }
-
-        const {title} = req.body
-        const file = req.file
-
-        const result = await uploadFile(file.buffer.toString("base64"))
-
-        const music = await musicModel.create({
-            uri: result.url,
-            title,
-            artist : decoded.id
-        })
-
-        res.status(201).json({
-            message:"music uploaded sussecfully",
-            music
-        })
-
-
-
-    }catch(err){
-        console.log(err)
-
-        return res.status(401).json({message: "Invalid user"})
-    }
-
+    res.status(201).json({
+        message: "music uploaded sussecfully",
+        music
+    })
 
 }
 
-async function createAlbum(req , res){
-    
-    
+async function createAlbum(req, res) {
+    const { title , musics} = req.body
+
+    const album = await albumModel.create({
+        title,
+        musics,
+        artist : req.user.id
+    })
+
+    res.status(201).json({
+        message: "Album created succesfully",
+        album
+    })
+
 }
 
-module.exports = {createMusic}
+module.exports = { createMusic , createAlbum}
