@@ -4,12 +4,18 @@ const albumModel = require("../models/album.model")
 
 async function createMusic(req, res) {
     const { title } = req.body
-    const file = req.file
+    const musicFile = req.files?.music?.[0];
+    const coverFile = req.files?.cover?.[0];
+    if(!musicFile || !coverFile){
+        return res.status(400).json({ message: "Both music and cover files are required" });
+    }
 
-    const result = await uploadFile(file.buffer.toString("base64"))
+    const musicResult = await uploadFile(musicFile.buffer.toString("base64"));
+    const coverResult = await uploadFile(coverFile.buffer.toString("base64"));
 
     const music = await musicModel.create({
-        uri: result.url,
+        uri: musicResult.url,
+        imageUri: coverResult.url,
         title,
         artist: req.user.id
     })

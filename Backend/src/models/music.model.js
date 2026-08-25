@@ -5,6 +5,10 @@ const musicSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    imageUri:{
+        type: String,
+        required: true
+    },
     title:{
         type: String,
         required: true

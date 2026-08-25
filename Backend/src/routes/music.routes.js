@@ -8,7 +8,10 @@ const upload = multer({
 })
 const route = express.Router();
 
-route.post("/create",authMiddleWare.authArtist, upload.single("music"), musicControllers.createMusic)
+route.post("/create",authMiddleWare.authArtist, upload.fields([
+    {name : "music" , maxCount: 1},
+    {name : "cover", maxCount: 1},
+]), musicControllers.createMusic)
 route.post("/create-album",authMiddleWare.authArtist, musicControllers.createAlbum)
 route.get("/",authMiddleWare.authUser, musicControllers.getAllMusics)
 route.get("/albums",authMiddleWare.authUser, musicControllers.getAllAlbums)
