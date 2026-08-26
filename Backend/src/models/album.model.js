@@ -5,6 +5,10 @@ const albumSchema = mongoose.Schema({
         type: String,
         required:true
     },
+    cover: {
+        type:String,
+        required: true
+    },
     musics:[
         {
             type: mongoose.Schema.Types.ObjectId,

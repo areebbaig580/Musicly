@@ -29,10 +29,18 @@ async function createMusic(req, res) {
 
 async function createAlbum(req, res) {
     const { title, musics } = req.body
+    const file = req.file
+
+    if(!file){
+        return res.status(400).json({message: "cover File required"})
+    }
+
+    const result = await uploadFile(file.buffer.toString('base64'));
 
     const album = await albumModel.create({
         title,
         musics,
+        cover: result.url,
         artist: req.user.id
     })
 
@@ -54,7 +62,7 @@ async function getAllMusics(req, res) {
 
 async function getAllAlbums(req, res) {
     
-    const album = await albumModel.find().select("title artist").populate("artist", "username email")
+    const album = await albumModel.find().select("title artist cover").populate("artist", "username email")
 
     return res.status(200).json({
         message: "Albums fetched successfully",
