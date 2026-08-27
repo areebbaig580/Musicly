@@ -1,10 +1,13 @@
-import Form from "../components/register/Form"
+import Background from "../components/register-login/Background"
+import FormsContainer from "../components/register-login/FormsContainer"
 
 
-const Register = () => {
+const Register = ({setLoggedIn}) => {
     return (
-        <div className='bg-[#212121] text-white min-h-screen w-full flex items-center justify-center' >
-            <Form/>
+
+        <div className='bg-black text-white min-h-screen w-full flex items-center justify-center' >
+            <FormsContainer heading={'Signup'} form={'Form'} setLoggedIn={setLoggedIn}/>
+            <Background link={'/login'} text={'Already have an Account ?'} icon={'Login'}/>
         </div>
     )
 }
