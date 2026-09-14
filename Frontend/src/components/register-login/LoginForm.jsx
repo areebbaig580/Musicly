@@ -17,6 +17,7 @@ const LoginForm = () => {
         })
          .then((res) => {
                 alert("Logged in succecfully")
+                localStorage.setItem('userInfo',JSON.stringify(res.data));
                 console.log(res)
                 e.target.reset();
                 navigate('/')

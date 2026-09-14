@@ -14,6 +14,7 @@ const Form = () => {
         })
             .then((res) => {
                 alert("Registered succecfully")
+                localStorage.setItem('userInfo',JSON.stringify(res.data));
                 console.log(res)
                 e.target.reset();
                 navigate('/')
