@@ -5,6 +5,7 @@ import AboutAlbum from './pages/AboutAlbum'
 import AllMusic from './pages/AllMusic'
 import AllAlbums from './pages/AllAlbums'
 import Login from './pages/Login'
+import ArtistDashboard from './pages/ArtistDashboard'
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/album/:id" element={<AboutAlbum />} />
         <Route path="/Musics" element={<AllMusic />} />
         <Route path="/Albums" element={<AllAlbums />} />
+        <Route path="/dashboard" element={<ArtistDashboard />} />
       </Routes>
 
 
