@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className='text-white min-h-screen w-full flex flex-col md:flex-row overflow-x-hidden'>
       <LeftPanel/>
-      <div className='py-2 flex flex-col gap-2'>
+      <div className= 'h-full grow flex flex-col px-2 py-2 gap-2'>
 
       <UserInfo/>
       <RightPanel />

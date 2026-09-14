@@ -21,22 +21,19 @@ const AboutAlbum = () => {
 
   }, [id])
 
-  if (loading) {
-    return <div>loading..</div>
-
-  } else {
-
     return (
       <div className='min-h-screen w-full flex'>
         <LeftPanel />
         <div className='h-full grow flex flex-col px-2 py-2 gap-2'>
           <UserInfo />
+          {loading ? <div>Loading</div> :
           <AlbumStructre albumData={albumData}/>
+          }
         </div>
 
       </div>
     )
-  }
+  
 }
 
 export default AboutAlbum
