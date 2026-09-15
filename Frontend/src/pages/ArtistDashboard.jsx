@@ -1,6 +1,7 @@
 import React from 'react'
 import LeftPanel from '../components/left-panel/LeftPanel'
 import UserInfo from '../components/right-panel/UserInfo'
+import DashboardContainer from '../components/dashboard/DashboardContainer'
 
 const ArtistDashboard = () => {
   return (
@@ -8,9 +9,7 @@ const ArtistDashboard = () => {
         <LeftPanel/>
         <div className='h-full grow flex flex-col px-2 py-2 gap-2'>
             <UserInfo/>
-            <div className='h-full w-full bg-[#212121] rounded-xl'>
-
-            </div>
+            <DashboardContainer/>
         </div>
       
     </div>
