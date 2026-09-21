@@ -13,6 +13,14 @@ const musicSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    createdAt:{
+        type: Date,
+        default: Date.now()
+    },
+    duration:{
+        type: Number,
+        default: 0
+    },
     artist:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",

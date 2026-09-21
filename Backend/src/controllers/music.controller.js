@@ -3,7 +3,7 @@ const uploadFile = require("../services/storage.services")
 const albumModel = require("../models/album.model")
 
 async function createMusic(req, res) {
-    const { title } = req.body
+    const { title , duration} = req.body
     const musicFile = req.files?.music?.[0];
     const coverFile = req.files?.cover?.[0];
     if(!musicFile || !coverFile){
@@ -17,6 +17,7 @@ async function createMusic(req, res) {
         uri: musicResult.url,
         imageUri: coverResult.url,
         title,
+        duration,
         artist: req.user.id
     })
 

@@ -15,6 +15,10 @@ const albumSchema = mongoose.Schema({
             ref: "music"
         }
     ],
+    createdAt:{
+        type: Date,
+        default: Date.now()
+    },
     artist:{
         type: mongoose.Schema.Types.ObjectId,
         ref:"user",
