@@ -5,7 +5,6 @@ const CreateMusic = ({ setShow }) => {
 
     const Create = async (e) => {
         e.preventDefault();
-
         const formData = new FormData(e.target);
 
         axios.post('http://localhost:3000/api/music/create', formData, {
@@ -33,16 +32,16 @@ const CreateMusic = ({ setShow }) => {
             <form onSubmit={Create} className=" flex flex-col gap-2">
 
                 <div>Audio File</div>
-                <input type="file" name='music' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg mb-2 cursor-pointer" />
+                <input type="file" name='music' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg mb-2 cursor-pointer" required />
 
                 <div>Title</div>
-                <input type="text" name='title' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg outline-none mb-2 cursor-pointer" placeholder='Title' />
+                <input type="text" name='title' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg outline-none mb-2 cursor-pointer" placeholder='Title' required />
 
                 <div>Song cover</div>
-                <input type="file" name='cover' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg mb-2 cursor-pointer" />
+                <input type="file" name='cover' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg mb-2 cursor-pointer" required />
 
-                {/* <div>Duration (in Seconds)</div>
-                <input type="number" className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg outline-none mb-2 cursor-pointer" /> */}
+                <div>Duration (in Seconds)</div>
+                <input type="number" name='duration' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg outline-none mb-2 cursor-pointer" required/>
 
                 <div className=" flex gap-4 mt-2 w-full justify-end">
                     <button className="h-fit w-fit px-4 py-3 bg-black rounded-xl cursor-pointer" onClick={() => setShow(false)}>Cancel</button>
