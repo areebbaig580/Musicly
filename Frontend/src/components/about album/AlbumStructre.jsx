@@ -31,7 +31,7 @@ const AlbumStructre = ({albumData}) => {
     
                         </div>
                       </div>
-                        <div className='pr-7 text-[#b1b1b1]'>{a.uri.duration}</div>
+                        <div className='pr-7 text-[#b1b1b1]'>{`${Math.floor(a.duration/60)}:${a.duration%60}`}</div>
                     </div>
                   ))}
                 </div>
