@@ -2,7 +2,7 @@ import { Calendar, Trash } from 'lucide-react'
 
 const AlbumContainerElem = ({ artistAlbum }) => {
     return (
-        <div className='mt-2 flex flex-col gap-2'>
+        <div className='mt-2 flex flex-col gap-2 h-[40vh] overflow-y-auto scroller'>
             {artistAlbum.map((a, index) => (
 
                 <div className='flex w-full justify-between items-center' key={index}>
