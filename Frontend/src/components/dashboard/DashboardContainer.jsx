@@ -7,6 +7,7 @@ import DashboardToggle from "./DashboardToggle"
 import CreateMusic from "./CreateMusic"
 import axios from "axios"
 import { useEffect } from "react"
+import CreateAlbum from "./CreateAlbum"
 
 const DashboardContainer = () => {
     const artistId = JSON.parse(localStorage.getItem('userInfo')).user._id;
@@ -42,6 +43,7 @@ const DashboardContainer = () => {
             <DashboardToggle setActive={setActive} active={active} />
             {active === "music" ? <DashboardMusicContainer setShow={setShow} artistMusic={artistMusic} /> : <DashboardAlbumContainer setShow={setShow} artistAlbum={artistAlbum}/>}
             {show === 'Songs' ? <CreateMusic setShow={setShow} /> : ''}
+            {show === 'Album' ? <CreateAlbum setShow={setShow} artistMusic={artistMusic}/> : ''}
 
         </div>
     )
