@@ -3,10 +3,10 @@ const uploadFile = require("../services/storage.services")
 const albumModel = require("../models/album.model")
 
 async function createMusic(req, res) {
-    const { title , duration} = req.body
+    const { title, duration } = req.body
     const musicFile = req.files?.music?.[0];
     const coverFile = req.files?.cover?.[0];
-    if(!musicFile || !coverFile){
+    if (!musicFile || !coverFile) {
         return res.status(400).json({ message: "Both music and cover files are required" });
     }
 
@@ -32,8 +32,8 @@ async function createAlbum(req, res) {
     const { title, musics } = req.body
     const file = req.file
 
-    if(!file){
-        return res.status(400).json({message: "cover File required"})
+    if (!file) {
+        return res.status(400).json({ message: "cover File required" })
     }
 
     const result = await uploadFile(file.buffer.toString('base64'));
@@ -53,26 +53,58 @@ async function createAlbum(req, res) {
 }
 
 async function getAllMusics(req, res) {
-    const musics = await musicModel.find().populate("artist", "username email")
+
+    let limit = parseInt(req.query.limit) || 6;
+    let page = parseInt(req.query.page) || 1;
+    if (limit > 100) limit = 100;
+    let skip = (page - 1) * limit;
+
+    const [musics, count] = await Promise.all([
+        musicModel.find().skip(skip).limit(limit).populate("artist", "username"),
+        musicModel.countDocuments()
+    ]);
 
     res.status(200).json({
-        message:"Music fetched succesfully",
-        musics
+        message: "Music fetched succesfully",
+        musics,
+        pagination: {
+            page,
+            limit,
+            totalItems: count,
+            totalPages: Math.ceil(count / limit),
+            hasNextPage: page * limit < count,
+            hasPrevPage: page > 1
+        }
     })
 }
 
 async function getAllAlbums(req, res) {
-    
-    const album = await albumModel.find().select("title artist cover").populate("artist", "username email")
+    let limit = parseInt(req.query.limit) || 6;
+    let page = parseInt(req.query.page) || 1;
+    if (limit > 100) limit = 100;
+    let skip = (page - 1) * limit;
+
+    const [albums, count] = await Promise.all([
+        albumModel.find().skip(skip).limit(limit).select('title artist cover').populate("artist", "username"),
+        albumModel.countDocuments()
+    ]);
 
     return res.status(200).json({
         message: "Albums fetched successfully",
-        album: album,
+        album: albums,
+        pagination: {
+            page,
+            limit,
+            totalItems: count,
+            totalPages: Math.ceil(count / limit),
+            hasNextPage: page * limit < count,
+            hasPrevPage: page > 1
+        }
     })
 
 }
 
-async function getAlbumById(req, res){
+async function getAlbumById(req, res) {
     const albumId = req.params.albumId;
 
     const album = await albumModel.findById(albumId).populate("artist", "username email").populate("musics")
@@ -83,4 +115,4 @@ async function getAlbumById(req, res){
     })
 }
 
-module.exports = { createMusic, createAlbum , getAllMusics ,getAllAlbums, getAlbumById}
+module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById }
