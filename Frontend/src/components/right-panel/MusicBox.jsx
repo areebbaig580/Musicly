@@ -29,7 +29,7 @@ const MusicBox = ({ img, title, music }) => {
     }
     return (
         <div className=' flex flex-col gap-1 items-center'>
-            <div className='h-45 w-45 bg-[#393939] rounded-full cursor-pointer relative group'>
+            <div className='h-45 w-45 cursor-pointer relative group'>
                 <img src={img} alt="" />
                 <div className='absolute bottom-10 right-5 h-fit w-fit px-2 py-2 bg-[#1db954] text-black rounded-4xl hidden group-hover:flex' onClick={handleClick}><Play fill='black' /></div>
             </div>
