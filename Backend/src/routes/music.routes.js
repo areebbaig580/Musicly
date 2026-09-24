@@ -16,6 +16,7 @@ route.post("/create-album",authMiddleWare.authArtist,upload.single('cover'), mus
 route.get("/",authMiddleWare.authUser, musicControllers.getAllMusics)
 route.get("/albums",authMiddleWare.authUser, musicControllers.getAllAlbums)
 route.get("/albums/:albumId",authMiddleWare.authUser, musicControllers.getAlbumById)
+route.delete('/:artistId/:id', authMiddleWare.authArtist,musicControllers.deleteMusic)
 
 
 module.exports = route
