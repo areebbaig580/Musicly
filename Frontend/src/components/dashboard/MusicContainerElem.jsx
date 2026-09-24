@@ -1,21 +1,30 @@
-import { Calendar, Trash } from 'lucide-react'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import MusicElem from './MusicElem';
 
-const MusicContainerElem = ({ artistMusic }) => {
+const MusicContainerElem = ({ artistMusic, setChange }) => {
+    const [artistId, setArtistId] = useState();
+    useEffect(() => {
+        if (artistMusic.length !== 0) {
+            setArtistId(artistMusic[0].artist);
+        }
+    }, [artistMusic])
+
+    const deleteMusic = async (musicId) => {
+        axios.delete(`http://localhost:3000/api/music/${artistId}/${musicId}`, {
+            withCredentials: true,
+        }).then((res) => {
+            console.log(res)
+            setChange('delete')
+            alert('Music deleted Succesfully')
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     return (
         <div className='mt-2 flex flex-col gap-2 h-[40vh] overflow-y-auto scroller'>
-            {artistMusic.map((m, index) => (
-
-                <div className='flex w-full justify-between items-center pr-4' key={index}>
-                    <div className='flex gap-2 items-center w-[20vw]'>
-                        <img src={m.imageUri} className='h-10' />
-                        <div className='capitalize text-lg'>{m.title}</div>
-                    </div>
-                    <div className='flex gap-1 items-center text-[#d8d8d8] mr-[14vw]'><Calendar size={18} />{m.createdAt.split('T')[0]}</div>
-                    <div><Trash className='text-red-500 hover:text-red-600 cursor-pointer' /></div>
-                </div>
-
-            ))}
-
+            <MusicElem artistMusic={artistMusic} deleteMusic={deleteMusic} setChange={setChange} />
         </div>
     )
 }
