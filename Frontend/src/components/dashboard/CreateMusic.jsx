@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 
-const CreateMusic = ({ setShow }) => {
+const CreateMusic = ({ setShow, setChange }) => {
 
     const Create = async (e) => {
         e.preventDefault();
@@ -14,17 +14,17 @@ const CreateMusic = ({ setShow }) => {
                 alert("Music Uploaded Succesfully")
                 console.log(res)
                 e.target.reset();
+                setChange('create');
                 setShow(false);
 
             })
             .catch((err) => {
                 console.log(err)
             })
-
     }
 
     return (
-        <div className='h-[80vh] w-[45vw] bg-[#212121] absolute top-5 right-80 z-50 
+        <div className='h-fit w-[45vw] bg-[#212121] absolute top-5 right-80 z-50 
   rounded-2xl shadow-2xl shadow-black/50 
   border border-white/10 px-4 py-4'>
 
@@ -41,7 +41,7 @@ const CreateMusic = ({ setShow }) => {
                 <input type="file" name='cover' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg mb-2 cursor-pointer" required />
 
                 <div>Duration (in Seconds)</div>
-                <input type="number" name='duration' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg outline-none mb-2 cursor-pointer" required/>
+                <input type="number" name='duration' className="h-fit w-full px-2 py-2 bg-[#303030] rounded-lg outline-none mb-2 cursor-pointer" required />
 
                 <div className=" flex gap-4 mt-2 w-full justify-end">
                     <button className="h-fit w-fit px-4 py-3 bg-black rounded-xl cursor-pointer" onClick={() => setShow(false)}>Cancel</button>

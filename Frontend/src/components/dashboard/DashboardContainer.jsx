@@ -15,6 +15,7 @@ const DashboardContainer = () => {
     const [show, setShow] = useState(null);
     const [artistMusic, setMusics] = useState([]);
     const [artistAlbum, setAlbums] = useState([]);
+    const[change, setChange]= useState(false);
 
     useEffect(() => {
         axios.get(`http://localhost:3000/api/artist/${artistId}/musics`, {
@@ -34,16 +35,16 @@ const DashboardContainer = () => {
         }).catch((err) => {
             console.log(err);
         })
-    }, [artistId])
+    },[artistId, change])
 
     return (
         <div className='h-full w-full bg-[#212121] rounded-xl px-4 py-2 relative'>
             <DashboardHeading />
-            <DashboardStats songs={artistMusic.length} albums={artistAlbum.length}/>
+            <DashboardStats songs={artistMusic.length} albums={artistAlbum.length} />
             <DashboardToggle setActive={setActive} active={active} />
-            {active === "music" ? <DashboardMusicContainer setShow={setShow} artistMusic={artistMusic} /> : <DashboardAlbumContainer setShow={setShow} artistAlbum={artistAlbum}/>}
-            {show === 'Songs' ? <CreateMusic setShow={setShow} /> : ''}
-            {show === 'Album' ? <CreateAlbum setShow={setShow} artistMusic={artistMusic}/> : ''}
+            {active === "music" ? <DashboardMusicContainer setShow={setShow} artistMusic={artistMusic} setChange={setChange}/> : <DashboardAlbumContainer setShow={setShow} artistAlbum={artistAlbum} setChange={setChange}/>}
+            {show === 'Songs' ? <CreateMusic setShow={setShow} setChange={setChange}/> : ''}
+            {show === 'Album' ? <CreateAlbum setShow={setShow} artistMusic={artistMusic} /> : ''}
 
         </div>
     )
