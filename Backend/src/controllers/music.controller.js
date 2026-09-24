@@ -127,7 +127,7 @@ async function deleteMusic(req, res) {
                 message: 'Music not Found'
             })
         };
-    
+
         if (!Music.artist._id.equals(artistId)) {
             return res.status(401).json({
                 message: "Unauthosrised access"
@@ -146,5 +146,36 @@ async function deleteMusic(req, res) {
     }
 
 }
+async function deleteAlbum(req, res) {
+    try {
 
-module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById, deleteMusic }
+        const { artistId, albumId } = req.params;
+
+        const album = await albumModel.findById(albumId);
+
+        if (!album) {
+            return res.status(404).json({
+                message: 'Album not Found'
+            })
+        };
+
+        if (!album.artist._id.equals(artistId)) {
+            return res.status(401).json({
+                message: "Unauthosrised access"
+            })
+        };
+
+        await albumModel.findByIdAndDelete(albumId);
+
+        return res.status(200).json({
+            message: "Album deleted Succesfully"
+        })
+    } catch (err) {
+        res.status(500).json({
+            err
+        })
+    }
+
+}
+
+module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById, deleteMusic, deleteAlbum }
