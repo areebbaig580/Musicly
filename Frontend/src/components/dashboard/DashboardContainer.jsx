@@ -44,7 +44,7 @@ const DashboardContainer = () => {
             <DashboardToggle setActive={setActive} active={active} />
             {active === "music" ? <DashboardMusicContainer setShow={setShow} artistMusic={artistMusic} setChange={setChange}/> : <DashboardAlbumContainer setShow={setShow} artistAlbum={artistAlbum} setChange={setChange}/>}
             {show === 'Songs' ? <CreateMusic setShow={setShow} setChange={setChange}/> : ''}
-            {show === 'Album' ? <CreateAlbum setShow={setShow} artistMusic={artistMusic} /> : ''}
+            {show === 'Album' ? <CreateAlbum setShow={setShow} artistMusic={artistMusic} setChange={setChange} /> : ''}
 
         </div>
     )
