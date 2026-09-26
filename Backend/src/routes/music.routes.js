@@ -13,6 +13,7 @@ route.post("/create", authMiddleWare.authArtist, upload.fields([
     { name: "cover", maxCount: 1 },
 ]), musicControllers.createMusic)
 route.post("/create-album", authMiddleWare.authArtist, upload.single('cover'), musicControllers.createAlbum)
+route.post("/edit-album/:artistId/:albumId", authMiddleWare.authArtist, musicControllers.editAlbum)
 route.get("/", authMiddleWare.authUser, musicControllers.getAllMusics)
 route.get("/albums", authMiddleWare.authUser, musicControllers.getAllAlbums)
 route.get("/albums/:albumId", authMiddleWare.authUser, musicControllers.getAlbumById)

@@ -21,7 +21,7 @@ async function createMusic(req, res) {
         artist: req.user.id
     })
 
-    res.status(201).json({
+    return res.status(201).json({
         message: "music uploaded sussecfully",
         music
     })
@@ -45,7 +45,7 @@ async function createAlbum(req, res) {
         artist: req.user.id
     })
 
-    res.status(201).json({
+    return res.status(201).json({
         message: "Album created succesfully",
         album
     })
@@ -64,7 +64,7 @@ async function getAllMusics(req, res) {
         musicModel.countDocuments()
     ]);
 
-    res.status(200).json({
+    return res.status(200).json({
         message: "Music fetched succesfully",
         musics,
         pagination: {
@@ -109,7 +109,7 @@ async function getAlbumById(req, res) {
 
     const album = await albumModel.findById(albumId).populate("artist", "username email").populate("musics")
 
-    res.status(200).json({
+    return res.status(200).json({
         message: "Album fetched successfully",
         album
     })
@@ -140,7 +140,7 @@ async function deleteMusic(req, res) {
             message: "Music deleted Succesfully"
         })
     } catch (err) {
-        res.status(500).json({
+        return res.status(500).json({
             err
         })
     }
@@ -171,11 +171,52 @@ async function deleteAlbum(req, res) {
             message: "Album deleted Succesfully"
         })
     } catch (err) {
-        res.status(500).json({
+        return res.status(500).json({
             err
         })
     }
 
 }
 
-module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById, deleteMusic, deleteAlbum }
+async function editAlbum(req, res) {
+    try {
+        const { artistId, albumId } = req.params;
+        const { musicsArr, removeArr } = req.body;
+
+
+        if (!musicsArr) {
+            return res.status(404).json({
+                message: "Musics array not found"
+            })
+        }
+
+        const album = await albumModel.findById(albumId);
+
+        if (!album) {
+            return res.status(404).json({
+                message: "Album not found"
+            })
+        }
+
+        if (!album.artist._id.equals(artistId)) {
+            return res.status(401).json({
+                message: 'Unauthorised access'
+            })
+        }
+        album.musics = album.musics.filter((musicId) => !removeArr.includes(musicId.toString()));
+        album.musics.push(...musicsArr);
+        const newAlbum = await album.save()
+
+        return res.status(201).json({
+            message: 'Album updated sussecfully',
+            newAlbum
+        })
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({
+            err
+        })
+    }
+}
+
+module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById, deleteMusic, deleteAlbum, editAlbum }
