@@ -1,6 +1,7 @@
 import { EllipsisVertical } from 'lucide-react'
 import {  useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import SearchBar from '../search/SearchBar';
 
 const UserInfo = () => {
     const boxRef = useRef();
@@ -10,7 +11,6 @@ const UserInfo = () => {
         const username = JSON.parse(localStorage.getItem('userInfo')).user.username;
         setUsername(username);
     },[])
-    
     
     const handleClick = () => {
         if (open === false) {
@@ -24,12 +24,9 @@ const UserInfo = () => {
     }
 
     return (
-        <div className='w-full h-fit md:flex justify-between items-center gap-2 md:px-0 px-2 hidden'>
-            <div className='grow flex justify-center items-center gap-2'>
-                <div className='text-[0.9rem] text-[#cdcdcd]'>Search</div>
-                <input type="text" className='w-4/10 px-4 py-1 rounded-2xl bg-[#212121] outline-none' placeholder='Search Music'/>
-            </div>
-            <div className='flex items-center gap-2'>
+        <div className='w-full h-fit flex justify-between items-center gap-2 md:px-0 px-2 '>
+            <SearchBar/>
+            <div className='md:flex items-center gap-2 hidden'>
                 <div className='text-[0.9rem] text-[#cdcdcd]'>Goodevening,</div>
                 <div className='capitalize'>{userName}</div>
                 <div className='cursor-pointer' onClick={handleClick}><EllipsisVertical size={20} /></div>
