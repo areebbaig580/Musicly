@@ -16,6 +16,7 @@ route.post("/create-album", authMiddleWare.authArtist, upload.single('cover'), m
 route.post("/edit-album/:artistId/:albumId", authMiddleWare.authArtist, musicControllers.editAlbum)
 route.get("/", authMiddleWare.authUser, musicControllers.getAllMusics)
 route.get("/albums", authMiddleWare.authUser, musicControllers.getAllAlbums)
+route.get("/search", authMiddleWare.authUser, musicControllers.searchMusic)
 route.get("/albums/:albumId", authMiddleWare.authUser, musicControllers.getAlbumById)
 route.delete('/:artistId/:id', authMiddleWare.authArtist, musicControllers.deleteMusic)
 route.delete('/artist/:artistId/album/:albumId', authMiddleWare.authArtist, musicControllers.deleteAlbum)

@@ -219,4 +219,26 @@ async function editAlbum(req, res) {
     }
 }
 
-module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById, deleteMusic, deleteAlbum, editAlbum }
+async function searchMusic(req, res) {
+    try {
+        const { q } = req.query;
+        if (!q) {
+            return res.status(404).json({
+                message: "music not found"
+            })
+        }
+
+        const musics = await musicModel.find({ title: { $regex: `^${q}`, $options: 'i' } }).select('title _id imageUri').populate("artist", "username").limit(10);
+
+        return res.status(200).json({
+            musics,
+        })
+
+    } catch (err) {
+        return res.status(500).json({
+            err
+        })
+    }
+}
+
+module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById, deleteMusic, deleteAlbum, editAlbum, searchMusic }
