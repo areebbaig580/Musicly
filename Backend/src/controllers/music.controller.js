@@ -115,6 +115,17 @@ async function getAlbumById(req, res) {
     })
 }
 
+async function getMusicById(req, res) {
+    const musicId = req.params.id;
+
+    const music = await musicModel.findById(musicId).populate('artist', 'username');
+
+    return res.status(200).json({
+        message: "Music fetched successfully",
+        music
+    })
+}
+
 async function deleteMusic(req, res) {
     try {
 
@@ -241,4 +252,4 @@ async function searchMusic(req, res) {
     }
 }
 
-module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById, deleteMusic, deleteAlbum, editAlbum, searchMusic }
+module.exports = { createMusic, createAlbum, getAllMusics, getAllAlbums, getAlbumById, deleteMusic, deleteAlbum, editAlbum, searchMusic, getMusicById }
