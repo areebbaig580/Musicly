@@ -6,8 +6,7 @@ import AllMusic from './pages/AllMusic'
 import AllAlbums from './pages/AllAlbums'
 import Login from './pages/Login'
 import ArtistDashboard from './pages/ArtistDashboard'
-
-
+import AboutMusic from './pages/AboutMusic'
 
 const App = () => {
   return (
@@ -18,6 +17,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/album/:id" element={<AboutAlbum />} />
+        <Route path="/music/:id" element={<AboutMusic />} />
         <Route path="/Musics" element={<AllMusic />} />
         <Route path="/Albums" element={<AllAlbums />} />
         <Route path="/dashboard" element={<ArtistDashboard />} />
