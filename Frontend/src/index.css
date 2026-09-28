@@ -18,3 +18,35 @@
 .scroller::-webkit-scrollbar-thumb:hover {
   background: rgba(112, 112, 112, 0.5);
 }
+
+/* flex gap-2 md:w-full items-center hover:text-[#1db954]  md:hover:border-r-3 md:hover:border-[#1db954] */
+.activeNav {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-items: center;
+  color: #1db954;
+  border-right: 3px solid #1db954;
+}
+
+.inactive {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-items: center;
+}
+
+.inactive:hover {
+  color: #1db954;
+}
+
+@media (max-width:770px) {
+  .scroller::-webkit-scrollbar-thumb {
+    background: transparent;
+
+  }
+
+  .scroller::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+}
