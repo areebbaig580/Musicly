@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import LeftPanel from '../components/left-panel/LeftPanel'
 import UserInfo from '../components/right-panel/UserInfo'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Clock } from 'lucide-react';
-import AlbumStructre from '../components/about album/AlbumStructre';
+import AlbumStructre from '../components/about-album-music/AlbumStructre';
 
 const AboutAlbum = () => {
   const { id } = useParams();
