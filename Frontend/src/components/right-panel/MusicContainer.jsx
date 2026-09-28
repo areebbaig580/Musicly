@@ -25,7 +25,7 @@ const MusicContainer = () => {
             <div className='h-fit w-full flex px-2 py-2 gap-5 items-center overflow-x-auto scroller'>
                 {
                     musics.map((m , index)=>(
-                        <MusicBox  img={m.imageUri} key={index} title={m.title} music={m.uri} />
+                        <MusicBox  img={m.imageUri} key={index} title={m.title} music={m.uri} id={m._id}/>
                     ))
                 }
                 

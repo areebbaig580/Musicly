@@ -27,7 +27,7 @@ const MoreMusic = () => {
             <div className='text-xl font-bold'>More music</div>
             <div className='h-[80vh] w-full md:w-[85vw] flex flex-wrap gap-8 mt-4 px-2 overflow-y-auto scroller'>
                 {musics.map((m, index) => (
-                    <MusicBox img={m.imageUri} key={index} title={m.title} music={m.uri} />
+                    <MusicBox img={m.imageUri} key={index} title={m.title} music={m.uri} id={m._id}/>
                 ))}
             </div>
             <Pagination page={page} setPage={setPage} paginationData={paginationData} />
