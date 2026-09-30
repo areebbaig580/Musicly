@@ -8,6 +8,7 @@ import CreateMusic from "./CreateMusic"
 import axios from "axios"
 import { useEffect } from "react"
 import CreateAlbum from "./CreateAlbum"
+import UpdateAlbum from "./UpdateAlbum"
 
 const DashboardContainer = () => {
     const artistId = JSON.parse(localStorage.getItem('userInfo')).user._id;
@@ -15,6 +16,7 @@ const DashboardContainer = () => {
     const [show, setShow] = useState(null);
     const [artistMusic, setMusics] = useState([]);
     const [artistAlbum, setAlbums] = useState([]);
+    const [albumIndex, setAlbumIndex]= useState(null);
     const[change, setChange]= useState(false);
 
     useEffect(() => {
@@ -42,9 +44,10 @@ const DashboardContainer = () => {
             <DashboardHeading />
             <DashboardStats songs={artistMusic.length} albums={artistAlbum.length} />
             <DashboardToggle setActive={setActive} active={active} />
-            {active === "music" ? <DashboardMusicContainer setShow={setShow} artistMusic={artistMusic} setChange={setChange}/> : <DashboardAlbumContainer setShow={setShow} artistAlbum={artistAlbum} setChange={setChange}/>}
+            {active === "music" ? <DashboardMusicContainer setShow={setShow} artistMusic={artistMusic} setChange={setChange}/> : <DashboardAlbumContainer setShow={setShow} artistAlbum={artistAlbum} setChange={setChange} setAlbumIndex={setAlbumIndex}/>}
             {show === 'Songs' ? <CreateMusic setShow={setShow} setChange={setChange}/> : ''}
             {show === 'Album' ? <CreateAlbum setShow={setShow} artistMusic={artistMusic} setChange={setChange} /> : ''}
+            {show === 'Update' ?<UpdateAlbum setShow={setShow} artistMusic={artistMusic} setChange={setChange} albumIndex={albumIndex} artistAlbum={artistAlbum}/>:''}
 
         </div>
     )
