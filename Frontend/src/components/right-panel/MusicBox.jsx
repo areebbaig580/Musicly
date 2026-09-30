@@ -3,17 +3,21 @@ import { useEffect, useRef } from 'react';
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
 
-const MusicBox = ({ img, title, music,id }) => {
+const MusicBox = ({ img, title, music, id }) => {
     const [playing, setPlaying] = useState(false);
     const audioRef = useRef(null);
 
     useEffect(() => {
-        audioRef.current = new Audio(music);
+        const a = new Audio();
+        a.preload = "none";
+        a.src = music;
+        audioRef.current = a;
+
         return () => {
             audioRef.current.pause();
             audioRef.current = null;
         };
-    }, [music]);
+    }, []);
 
     const handleClick = () => {
         const audio = audioRef.current;
