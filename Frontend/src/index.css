@@ -49,4 +49,12 @@
   .scroller::-webkit-scrollbar-thumb:hover {
     background: transparent;
   }
+  .inactive{
+    width: fit-content;
+    color: #c1c1c1;
+  }
+  .activeNav{
+    border-right: 0;
+    width: fit-content;
+  }
 }

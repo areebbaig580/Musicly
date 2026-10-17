@@ -22,7 +22,7 @@ const AlbumsContainer = () => {
     return (
         <div className='h-fit w-full md:w-[85vw] px-2 md:px-4 py-2 md:py-4 rounded-lg relative'>
             <div className='text-xl font-bold'>Albums</div>
-            <div className='h-fit w-full flex px-2 py-2 gap-5 items-center overflow-x-auto scroller'>
+            <div className='h-fit w-full flex md:px-2 py-2 gap-5 items-center overflow-x-auto scroller'>
 
                 {
                     albums.map((a, index) => (
