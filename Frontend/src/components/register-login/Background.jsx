@@ -2,7 +2,7 @@ import Redirect from "./Redirect"
 
 const Background = ({ link, text, icon }) => {
     return (
-        <div className="h-screen w-7/10 relative">
+        <div className="h-screen w-7/10 hidden md:flex relative">
             <Redirect link={link} text={text} icon={icon} />
             <div className="absolute z-50 h-full w-full flex flex-col items-center justify-center gap-10 bg-white/3">
                 <div className="text-9xl text-center font-bold">Musics for Everyone.</div>

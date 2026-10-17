@@ -13,9 +13,9 @@ const App = () => {
     <div className='min-h-screen w-full flex flex-col md:flex-row bg-black text-white'>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/album/:id" element={<AboutAlbum />} />
         <Route path="/music/:id" element={<AboutMusic />} />
         <Route path="/Musics" element={<AllMusic />} />

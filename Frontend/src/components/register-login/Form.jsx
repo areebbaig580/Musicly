@@ -14,17 +14,17 @@ const Form = () => {
         })
             .then((res) => {
                 alert("Registered succecfully")
-                localStorage.setItem('userInfo',JSON.stringify(res.data));
+                 localStorage.setItem('userInfo',JSON.stringify(res.data));
                 console.log(res)
                 e.target.reset();
-                navigate('/')
+                navigate('/home')
             })
             .catch((err) => {
                 console.log(err)
             })
     }
     return (
-        <form className='h-[55vh] w-full flex flex-col gap-5 items-center ' onSubmit={registerUser}>
+        <form className='h-fit md:h-[55vh] w-full flex flex-col gap-5 items-center ' onSubmit={registerUser}>
             <input type="text" className='bg-[#212121] py-3 px-4 rounded-lg w-8/10' placeholder='Enter username' name="username" required />
             <input type="email" className='bg-[#212121] py-3 px-4 rounded-lg w-8/10' placeholder='Enter email' name="email" required />
             <input type="password" className='bg-[#212121] py-3 px-4 rounded-lg w-8/10' placeholder='Enter password ' name="password" required />
