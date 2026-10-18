@@ -4,6 +4,7 @@ import UserInfo from '../components/right-panel/UserInfo'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import MusicPage from '../components/about-album-music/MusicPage';
+import Footer from '../components/right-panel/Footer';
 
 const AboutMusic = () => {
     const { id } = useParams();
@@ -20,13 +21,19 @@ const AboutMusic = () => {
 
     }, [id])
     return (
-        <div className='min-h-screen w-full flex'>
+        <div className='text-white min-h-screen w-full flex flex-col md:flex-row overflow-x-hidden'>
             <LeftPanel />
-            <div className='h-full grow flex flex-col px-2 py-2 gap-2'>
+            <div className='h-screen grow flex flex-col px-2 py-2 gap-2'>
                 <UserInfo />
-                {loading ? <div>Loading</div> :
-                    <MusicPage musicData={musicData}/> 
-                }
+                <div className='h-full w-full rounded-xl overflow-y-auto scroller overflow-x-hidden'>
+                    <div className='h-[92vh] md:bg-[#212121]'>
+
+                        {loading ? <div>Loading</div> :
+                            <MusicPage musicData={musicData} />
+                        }
+                    </div>
+                    <Footer/>
+                </div>
             </div>
 
         </div>

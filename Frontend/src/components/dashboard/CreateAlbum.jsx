@@ -22,7 +22,7 @@ const CreateAlbum = ({ setShow, artistMusic, setChange }) => {
     }
 
     return (
-        <div className='h-fit w-[35vw] bg-[#212121] absolute top-5 right-90 z-50 
+        <div className='h-fit w-[94vw] md:w-[35vw] bg-[#212121] absolute top-5 right-2 md:right-90 z-50 
   rounded-2xl shadow-2xl shadow-black/50 
   border border-white/10 px-4 py-4'>
 

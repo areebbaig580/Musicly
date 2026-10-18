@@ -24,7 +24,7 @@ const CreateMusic = ({ setShow, setChange }) => {
     }
 
     return (
-        <div className='h-fit w-[45vw] bg-[#212121] absolute top-5 right-80 z-50 
+        <div className='h-fit w-[94vw] md:w-[45vw] bg-[#212121] absolute top-5 right-2 md:right-80 z-50 
   rounded-2xl shadow-2xl shadow-black/50 
   border border-white/10 px-4 py-4'>
 

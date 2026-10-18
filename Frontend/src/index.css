@@ -41,9 +41,11 @@
 }
 
 @media (max-width:770px) {
+  .scroller::-webkit-scrollbar{
+    width: 0;
+  }
   .scroller::-webkit-scrollbar-thumb {
     background: transparent;
-
   }
 
   .scroller::-webkit-scrollbar-thumb:hover {
@@ -56,5 +58,11 @@
   .activeNav{
     border-right: 0;
     width: fit-content;
+  }
+}
+@media (max-width:352px){
+  .imgBox{
+    height: 7rem;
+    width: 7rem;
   }
 }

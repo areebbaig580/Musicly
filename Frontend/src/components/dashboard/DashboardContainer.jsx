@@ -40,7 +40,7 @@ const DashboardContainer = () => {
     },[artistId, change])
 
     return (
-        <div className='h-full w-full bg-[#212121] rounded-xl px-4 py-2 relative'>
+        <div className='h-full w-full bg-[#212121] rounded-xl px-2 md:px-4 py-2 relative'>
             <DashboardHeading />
             <DashboardStats songs={artistMusic.length} albums={artistAlbum.length} />
             <DashboardToggle setActive={setActive} active={active} />

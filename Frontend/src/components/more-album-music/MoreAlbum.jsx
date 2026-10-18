@@ -25,7 +25,7 @@ const MoreAlbum = () => {
     return (
         <div className='h-full w-full px-4 py-2 relative'>
             <div className='text-xl font-bold'>More Albums</div>
-            <div className='h-[80vh] w-full md:w-[85vw] flex flex-wrap gap-8 mt-4 px-2 overflow-y-auto scroller'>
+            <div className='h-fit w-full md:w-[85vw] flex flex-wrap gap-4 md:gap-8 mt-4 md:px-2 overflow-y-auto scroller'>
                 {albums.map((a, index) => (
                     <Album img={a.cover} key={index} title={a.title} artist={a.artist} id={a._id} />
                 ))}
