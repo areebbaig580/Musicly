@@ -26,7 +26,7 @@ const UserInfo = () => {
     }
 
     const handleLogout = () => {
-        axios.post(`${apiUrl}/api/auth/logout`,{
+        axios.post(`${apiUrl}/api/auth/logout`,{},{
              withCredentials: true,
         }).then((res)=>{
             alert('Logged out succesfully');
