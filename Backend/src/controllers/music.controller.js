@@ -129,7 +129,8 @@ async function getMusicById(req, res) {
 async function deleteMusic(req, res) {
     try {
 
-        const { artistId, id } = req.params;
+        const { id } = req.params;
+        const artistId = req.user.id;
 
         const Music = await musicModel.findById(id);
 
@@ -160,7 +161,8 @@ async function deleteMusic(req, res) {
 async function deleteAlbum(req, res) {
     try {
 
-        const { artistId, albumId } = req.params;
+        const { albumId } = req.params;
+        const artistId = req.user.id;
 
         const album = await albumModel.findById(albumId);
 

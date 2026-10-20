@@ -19,8 +19,8 @@ route.get("/albums", authMiddleWare.authUser, musicControllers.getAllAlbums)
 route.get("/search", authMiddleWare.authUser, musicControllers.searchMusic)
 route.get("/:id", authMiddleWare.authUser, musicControllers.getMusicById)
 route.get("/albums/:albumId", authMiddleWare.authUser, musicControllers.getAlbumById)
-route.delete('/:artistId/:id', authMiddleWare.authArtist, musicControllers.deleteMusic)
-route.delete('/artist/:artistId/album/:albumId', authMiddleWare.authArtist, musicControllers.deleteAlbum)
+route.delete('/:id', authMiddleWare.authArtist, musicControllers.deleteMusic)
+route.delete('/artist/album/:albumId', authMiddleWare.authArtist, musicControllers.deleteAlbum)
 
 
 module.exports = route

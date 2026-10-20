@@ -1,18 +1,10 @@
 import axios from 'axios';
 import { Calendar, Pencil, Trash } from 'lucide-react'
-import { useEffect } from 'react';
-import { useState } from 'react';
 
 const AlbumContainerElem = ({ artistAlbum, setChange, setShow, setAlbumIndex }) => {
-    const [artistId, setArtistId] = useState();
-    useEffect(() => {
-        if (artistAlbum.length !== 0) {
-            setArtistId(artistAlbum[0].artist);
-        }
-    }, [artistAlbum])
 
     const deleteAlbum = async (albumId) => {
-        axios.delete(`http://localhost:3000/api/music/artist/${artistId}/album/${albumId}`, {
+        axios.delete(`http://localhost:3000/api/music/artist/album/${albumId}`, {
             withCredentials: true,
         }).then((res) => {
             console.log(res)

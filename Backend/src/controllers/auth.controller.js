@@ -14,7 +14,7 @@ async function registerUser(req, res) {
     })
 
     if (isUserAlreadyExists) {
-        res.status(409).json({
+        return res.status(409).json({
             message: "user already exists"
         })
     }
@@ -39,7 +39,7 @@ async function registerUser(req, res) {
         secure: false
     });
 
-    res.status(201).json({
+    return res.status(201).json({
         message: "user registered successfully",
         user
     })
@@ -58,7 +58,7 @@ async function loginUser(req, res) {
     })
 
     if (!user) {
-        res.status(401).json({
+        return res.status(401).json({
             message: "invalid credintials"
         })
     }
@@ -66,7 +66,7 @@ async function loginUser(req, res) {
     const isPasswordValid = await bcrypt.compare(password, user.password)
 
     if (!isPasswordValid) {
-        res.status(401).json({
+        return res.status(401).json({
             message: "invalid crediantals"
         })
     }
@@ -78,7 +78,7 @@ async function loginUser(req, res) {
 
     res.cookie("token", token);
 
-    res.status(201).json({
+    return res.status(201).json({
         message: "user logged in successfully",
         user
     })
