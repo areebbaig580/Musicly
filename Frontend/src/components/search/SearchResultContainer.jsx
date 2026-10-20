@@ -6,10 +6,11 @@ import axios from 'axios'
 import { useState } from 'react'
 
 const SearchResultContainer = ({ show, query }) => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [musics, setMusics] = useState([]);
     useEffect(() => {
         if (query === '') return;
-        axios.get(`http://localhost:3000/api/music/search?q=${encodeURIComponent(query)}`, {
+        axios.get(`${apiUrl}/api/music/search?q=${encodeURIComponent(query)}`, {
             withCredentials: true,
         }).then((res) => {
             setMusics(res.data.musics)

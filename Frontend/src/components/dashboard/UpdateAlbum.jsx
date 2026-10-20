@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 
 const UpdateAlbum = ({ artistMusic, setShow, albumIndex, artistAlbum }) => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [albumSongs, setAlbumSongs] = useState([]);
     const [notAlbSongs, setNotAlbSongs] = useState([]);
     const [musicsArr, setMusicsArr] = useState([]);
@@ -32,7 +33,7 @@ const UpdateAlbum = ({ artistMusic, setShow, albumIndex, artistAlbum }) => {
         e.preventDefault();
         if (removeArr.length < 0 && musicsArr.length < 0) return;
 
-        axios.post(`http://localhost:3000/api/music/edit-album/${artistAlbum[albumIndex].artist}/${artistAlbum[albumIndex]._id}`, { musicsArr, removeArr }, {
+        axios.post(`${apiUrl}/api/music/edit-album/${artistAlbum[albumIndex].artist}/${artistAlbum[albumIndex]._id}`, { musicsArr, removeArr }, {
             withCredentials: true,
         }).then((res) => {
             console.log(res.data)

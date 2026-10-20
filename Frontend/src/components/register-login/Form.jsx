@@ -2,6 +2,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 
 const Form = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const navigate = useNavigate();
     const registerUser = async (e) => {
         e.preventDefault();
@@ -9,12 +10,12 @@ const Form = () => {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
-        axios.post("http://localhost:3000/api/auth/register", data, {
+        axios.post(`${apiUrl}/api/auth/register`, data, {
             withCredentials: true
         })
             .then((res) => {
                 alert("Registered succecfully")
-                 localStorage.setItem('userInfo',JSON.stringify(res.data));
+                localStorage.setItem('userInfo', JSON.stringify(res.data));
                 console.log(res)
                 e.target.reset();
                 navigate('/home')

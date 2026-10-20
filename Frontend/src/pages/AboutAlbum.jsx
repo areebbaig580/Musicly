@@ -7,12 +7,13 @@ import AlbumStructre from '../components/about-album-music/AlbumStructre';
 import Footer from '../components/right-panel/Footer';
 
 const AboutAlbum = () => {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const { id } = useParams();
   const [albumData, setAlbumData] = useState({});
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/music/albums/${id}`, { withCredentials: true })
+    axios.get(`${apiUrl}/api/music/albums/${id}`, { withCredentials: true })
       .then((res) => {
         console.log(res.data)
         setAlbumData(res.data.album)

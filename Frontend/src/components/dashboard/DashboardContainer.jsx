@@ -16,11 +16,12 @@ const DashboardContainer = () => {
     const [show, setShow] = useState(null);
     const [artistMusic, setMusics] = useState([]);
     const [artistAlbum, setAlbums] = useState([]);
-    const [albumIndex, setAlbumIndex]= useState(null);
-    const[change, setChange]= useState(false);
+    const [albumIndex, setAlbumIndex] = useState(null);
+    const [change, setChange] = useState(false);
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/artist/${artistId}/musics`, {
+        axios.get(`${apiUrl}/api/artist/${artistId}/musics`, {
             withCredentials: true,
         }).then((res) => {
             console.log(res.data)
@@ -29,7 +30,7 @@ const DashboardContainer = () => {
             console.log(err);
         })
 
-        axios.get(`http://localhost:3000/api/artist/${artistId}/albums`, {
+        axios.get(`${apiUrl}/api/artist/${artistId}/albums`, {
             withCredentials: true,
         }).then((res) => {
             console.log(res.data)
@@ -37,17 +38,17 @@ const DashboardContainer = () => {
         }).catch((err) => {
             console.log(err);
         })
-    },[artistId, change])
+    }, [artistId, change])
 
     return (
         <div className='h-full w-full bg-[#212121] rounded-xl px-2 md:px-4 py-2 relative'>
             <DashboardHeading />
             <DashboardStats songs={artistMusic.length} albums={artistAlbum.length} />
             <DashboardToggle setActive={setActive} active={active} />
-            {active === "music" ? <DashboardMusicContainer setShow={setShow} artistMusic={artistMusic} setChange={setChange}/> : <DashboardAlbumContainer setShow={setShow} artistAlbum={artistAlbum} setChange={setChange} setAlbumIndex={setAlbumIndex}/>}
-            {show === 'Songs' ? <CreateMusic setShow={setShow} setChange={setChange}/> : ''}
+            {active === "music" ? <DashboardMusicContainer setShow={setShow} artistMusic={artistMusic} setChange={setChange} /> : <DashboardAlbumContainer setShow={setShow} artistAlbum={artistAlbum} setChange={setChange} setAlbumIndex={setAlbumIndex} />}
+            {show === 'Songs' ? <CreateMusic setShow={setShow} setChange={setChange} /> : ''}
             {show === 'Album' ? <CreateAlbum setShow={setShow} artistMusic={artistMusic} setChange={setChange} /> : ''}
-            {show === 'Update' ?<UpdateAlbum setShow={setShow} artistMusic={artistMusic} setChange={setChange} albumIndex={albumIndex} artistAlbum={artistAlbum}/>:''}
+            {show === 'Update' ? <UpdateAlbum setShow={setShow} artistMusic={artistMusic} setChange={setChange} albumIndex={albumIndex} artistAlbum={artistAlbum} /> : ''}
 
         </div>
     )

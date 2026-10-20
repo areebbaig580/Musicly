@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const CreateAlbum = ({ setShow, artistMusic, setChange }) => {
+     const apiUrl = import.meta.env.VITE_API_URL;
     const Create = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
 
-        axios.post('http://localhost:3000/api/music/create-album', formData, {
+        axios.post(`${apiUrl}/api/music/create-album`, formData, {
             withCredentials: true,
         })
             .then((res) => {

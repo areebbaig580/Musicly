@@ -1,7 +1,5 @@
-import React from 'react'
 import LeftPanel from '../components/left-panel/LeftPanel'
 import UserInfo from '../components/right-panel/UserInfo'
-import { useParams } from 'react-router-dom'
 import MoreAlbum from '../components/more-album-music/MoreAlbum'
 import Footer from '../components/right-panel/Footer'
 

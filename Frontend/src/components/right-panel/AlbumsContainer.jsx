@@ -4,10 +4,11 @@ import Album from './Album';
 import { Link } from 'react-router-dom';
 
 const AlbumsContainer = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [albums, setAlbums] = useState([]);
     useEffect(() => {
         const getAlbums = async () => {
-            await axios.get("http://localhost:3000/api/music/albums", { withCredentials: true })
+            await axios.get(`${apiUrl}/api/music/albums`, { withCredentials: true })
                 .then((res) => {
                     console.log(res.data)
                     setAlbums(res.data.album)

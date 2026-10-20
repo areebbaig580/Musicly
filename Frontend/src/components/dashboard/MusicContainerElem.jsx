@@ -2,9 +2,10 @@ import axios from 'axios';
 import MusicElem from './MusicElem';
 
 const MusicContainerElem = ({ artistMusic, setChange }) => {
-    
+    const apiUrl = import.meta.env.VITE_API_URL;
+
     const deleteMusic = async (musicId) => {
-        axios.delete(`http://localhost:3000/api/music/${musicId}`, {
+        axios.delete(`${apiUrl}/api/music/${musicId}`, {
             withCredentials: true,
         }).then((res) => {
             console.log(res)

@@ -4,12 +4,13 @@ import Album from '../right-panel/Album';
 import Pagination from './Pagination';
 
 const MoreAlbum = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const [albums, setAlbums] = useState([]);
     const [paginationData, setPaginationData] = useState(null);
     const [page, setPage] = useState(1);
     useEffect(() => {
         const getAlbums = async () => {
-            await axios.get(`http://localhost:3000/api/music/albums?limit=12&page=${page}`, { withCredentials: true })
+            await axios.get(`${apiUrl}/api/music/albums?limit=12&page=${page}`, { withCredentials: true })
                 .then((res) => {
                     console.log(res.data)
                     setAlbums(res.data.album)

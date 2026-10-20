@@ -7,12 +7,13 @@ import MusicPage from '../components/about-album-music/MusicPage';
 import Footer from '../components/right-panel/Footer';
 
 const AboutMusic = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
     const { id } = useParams();
     const [musicData, setMusicData] = useState({});
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/music/${id}`, { withCredentials: true })
+        axios.get(`${apiUrl}/api/music/${id}`, { withCredentials: true })
             .then((res) => {
                 console.log(res.data)
                 setMusicData(res.data.music)
@@ -32,7 +33,7 @@ const AboutMusic = () => {
                             <MusicPage musicData={musicData} />
                         }
                     </div>
-                    <Footer/>
+                    <Footer />
                 </div>
             </div>
 

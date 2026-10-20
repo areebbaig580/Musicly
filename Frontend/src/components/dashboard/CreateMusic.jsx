@@ -1,13 +1,12 @@
 import axios from 'axios';
-import { useEffect } from 'react';
 
 const CreateMusic = ({ setShow, setChange }) => {
-
+    const apiUrl = import.meta.env.VITE_API_URL;
     const Create = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
 
-        axios.post('http://localhost:3000/api/music/create', formData, {
+        axios.post(`${apiUrl}/api/music/create`, formData, {
             withCredentials: true,
         })
             .then((res) => {

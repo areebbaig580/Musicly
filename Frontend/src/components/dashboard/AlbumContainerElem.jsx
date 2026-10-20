@@ -2,9 +2,10 @@ import axios from 'axios';
 import { Calendar, Pencil, Trash } from 'lucide-react'
 
 const AlbumContainerElem = ({ artistAlbum, setChange, setShow, setAlbumIndex }) => {
+     const apiUrl = import.meta.env.VITE_API_URL;
 
     const deleteAlbum = async (albumId) => {
-        axios.delete(`http://localhost:3000/api/music/artist/album/${albumId}`, {
+        axios.delete(`${apiUrl}/api/music/artist/album/${albumId}`, {
             withCredentials: true,
         }).then((res) => {
             console.log(res)
