@@ -2,6 +2,24 @@ const userModel = require("../models/user.model")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
+async function getUser(req, res) {
+    const userId = req.user.id;
+    try {
+        const user = await userModel.findById(userId).select('_id username role');
+        if (!user) {
+            return res.status(401).json({
+                message: "User not found"
+            })
+        }
+
+        return res.status(201).json({
+            user,
+        })
+    } catch (err) {
+        err,
+        console.log(err)
+    }
+}
 
 async function registerUser(req, res) {
     const { username, email, password, role = "user" } = req.body;
@@ -90,4 +108,4 @@ async function logoutUser(req, res) {
     return res.status(200).json({ message: 'Logged out successfully' });
 };
 
-module.exports = { registerUser, loginUser, logoutUser }
+module.exports = { registerUser, loginUser, logoutUser, getUser }
